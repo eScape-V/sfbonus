@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Liste catégories{% endblock %}
+
+{% block body %}
+    <h2>Liste des catégories :</h2>
+    <br>
+    <hr>
+    <section class="categories-list">
+        <ol>
+        {% for categorie in categories %}
+            <li><a href="{{ path('categorie_details', {'id': categorie.id}) }}">{{ categorie.libelle }}</a></li>
+            <br>
+        {% endfor %}
+        </ol>
+    </section>
+{% endblock %}

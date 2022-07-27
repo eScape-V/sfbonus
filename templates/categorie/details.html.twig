@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Détails catégorie{% endblock %}
+
+{% block body %}
+    <h2>Catégorie {{ categorie.libelle }}</h2>
+    <div class="categorie-details">
+        <div class="categorie-details-infos">
+            <h3>Nombre d'élément(s) : {{ categorie.produit.count }}</h3>
+            <h4>Liste des élément(s) :</h4>
+            <ul>
+            {% for produit in categorie.produit %}
+                <li><a href="{{ path('produit_details', {'id': produit.id}) }}" title="Nom">{{ produit.libelle }}</a></li>
+                <br>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+

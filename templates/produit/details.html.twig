@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Détails produit{% endblock %}
+
+{% block body %}
+    <h2>Détails du produit</h2>
+    <div class="produit-details">
+        <div class="produit-details-infos">
+            <h3>Libellé : {{ produit.libelle }}</h3>
+            <div>Référence : {{ produit.reference }}</div>
+            <div>Catégorie : {{ produit.category.libelle }}</div>
+            <div>Prix : {{ produit.prix }}€</div>
+            <div>Stock : {{ produit.stock }}</div>
+            <div>Date d'ajout : {{ produit.dateAjout|date('d-m-Y') }}</div>
+        </div>
+    </div>
+    <button><a href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier produit</a></button>
+    <button><a href="{{ path('produit_delete', {'id': produit.id}) }}">Supprimer produit</a></button>
+{% endblock %}
+
+

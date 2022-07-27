@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Modifier produit{% endblock %}
+
+{% block body %}
+    <div class="edit">
+        {{ form_start(produitForm) }}
+        {{ form_widget(produitForm) }}
+
+        <button>Modifier produit</button>
+        <button><a href="{{ path('produit_liste') }}">Annuler</a></button>
+
+        {{ form_end(produitForm) }}
+    </div>
+{% endblock %}

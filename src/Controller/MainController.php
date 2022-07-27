@@ -2,7 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
+use App\Form\ProduitType;
+use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
@@ -11,17 +17,25 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="main_accueil")
      */
-    public function accueil()
+    public function accueil(Request $request, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('main/accueil.html.twig');
-    }
+        $produit = new Produit();
+        $produit->setDateAjout(new \DateTime());
 
-    /**
-     * @Route("/liste", name="main_liste")
-     */
-    public function liste()
-    {
-        return $this->render('main/liste.html.twig');
-    }
+        $produitForm = $this->createForm(ProduitType::class, $produit);
 
+        $produitForm->handleRequest($request);
+
+        if($produitForm->isSubmitted()){
+            $entityManager->persist($produit);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Produit ajouté avec succès !');
+            return $this->redirectToRoute('produit_details', ['id' => $produit->getId()]);
+        }
+
+        return $this->render('main/accueil.html.twig', [
+            'produitForm' => $produitForm->createView()
+        ]);
+    }
 }
