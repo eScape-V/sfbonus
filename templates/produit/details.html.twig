@@ -14,8 +14,12 @@
             <div>Date d'ajout : {{ produit.dateAjout|date('d-m-Y') }}</div>
         </div>
     </div>
-    <button><a href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier produit</a></button>
-    <button><a href="{{ path('produit_delete', {'id': produit.id}) }}">Supprimer produit</a></button>
+    {% if is_granted("ROLE_USER") %}
+        <button><a href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier produit</a></button>
+    {% endif %}
+    {% if is_granted("ROLE_ADMIN") %}
+        <button><a href="{{ path('produit_delete', {'id': produit.id}) }}">Supprimer produit</a></button>
+    {% endif %}
 {% endblock %}
 
 

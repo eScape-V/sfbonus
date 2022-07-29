@@ -27,10 +27,15 @@ class ProduitType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'libelle',
-                'label' => 'Catégorie'
+                'label' => 'Catégorie',
+                'attr' => array('style' => 'width: 130px')
             ])
-            ->add('Prix', IntegerType::class)
-            ->add('Stock', IntegerType::class)
+            ->add('Prix', IntegerType::class, [
+                'attr' => array('style' => 'width: 90px')
+            ])
+            ->add('Stock', IntegerType::class, [
+                'attr' => array('style' => 'width: 60px')
+            ])
         ;
     }
 

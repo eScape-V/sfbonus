@@ -74,7 +74,7 @@ label {
 input, textarea, select {
     margin-bottom: 1rem;
     box-sizing: border-box;
-    width: 150px;
+    width: 200px;
     max-width: 50%;
 
 }
@@ -124,3 +124,4 @@ input, textarea, select {
     display: inline;
     width: 300px;
 }
+

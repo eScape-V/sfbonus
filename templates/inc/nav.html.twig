@@ -3,5 +3,11 @@
         <li><a href="{{ path('main_accueil') }}" title="Accueil">Accueil</a></li>
         <li><a href="{{ path('produit_liste') }}" title="Liste produits">Liste produits</a></li>
         <li><a href="{{ path('categorie_liste') }}" title="Catégories">Catégories</a></li>
+        {% if not(app.user) %}
+            <li><a href="{{ path('app_register') }}" title="Inscription">Inscription</a></li>
+            <li><a href="{{ path('app_login') }}" title="Connexion">Connexion</a></li>
+        {% else %}
+            <li><a href="{{ path('app_logout') }}" title="Déconnexion">Déconnexion ({{ app.user.email|split('@')[0]}})</a></li>
+        {% endif %}
     </ul>
 </nav>
